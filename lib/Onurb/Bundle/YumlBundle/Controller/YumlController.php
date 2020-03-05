@@ -4,6 +4,7 @@ namespace Onurb\Bundle\YumlBundle\Controller;
 
 use Psr\Container\ContainerInterface;
 use Onurb\Bundle\YumlBundle\Yuml\YumlClient;
+use Onurb\Bundle\YumlBundle\Yuml\YumlClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -18,10 +19,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class YumlController extends AbstractController
 {
     protected $container;
+    /** @var YumlClient $yumlClient */
+    protected $yumlClient;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(ContainerInterface $container, YumlClientInterface $yumlClient)
     {
         $this->container = $container;
+        $this->yumlClient = $yumlClient;
     }
 
     /**
@@ -29,9 +33,6 @@ class YumlController extends AbstractController
      */
     public function indexAction()
     {
-        /** @var YumlClient $yumlClient */
-        $yumlClient = $this->get('onurb_yuml.client');
-
         $showDetailParam    = $this->getParameter('onurb_yuml.show_fields_description');
         $colorsParam        = $this->getParameter('onurb_yuml.colors');
         $notesParam         = $this->getParameter('onurb_yuml.notes');
@@ -41,8 +42,8 @@ class YumlController extends AbstractController
         $scale              = $this->getParameter('onurb_yuml.scale');
 
         return $this->redirect(
-            $yumlClient->getGraphUrl(
-                $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
+            $this->yumlClient->getGraphUrl(
+                $this->yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
                 $styleParam,
                 $extensionParam,
                 $directionParam,
@@ -50,4 +51,3 @@ class YumlController extends AbstractController
             )
         );
     }
-}
