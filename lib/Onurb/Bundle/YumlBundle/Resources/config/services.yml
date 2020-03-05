@@ -15,3 +15,7 @@ services:
     Onurb\Bundle\YumlBundle\Command\YumlCommand:
         tags:
             - { name: 'console.command', command: 'yuml:mappings' }
+
+    Onurb\Bundle\YumlBundle\Controller\YumlController:
+        public: true
+        tags: ['container.service_subscriber']
