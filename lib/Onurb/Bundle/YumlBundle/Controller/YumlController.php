@@ -51,3 +51,4 @@ class YumlController extends AbstractController
             )
         );
     }
+}
