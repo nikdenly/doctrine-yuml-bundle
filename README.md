@@ -18,7 +18,7 @@ It uses the yuml.me api to display your project's objects mapping.
 
 
 ## Installation
-### Symfony 4
+### Symfony 4/5
 
   Run the `composer require onurb/doctrine-yuml-bundle` command in your console
 

@@ -6,6 +6,7 @@ use Psr\Container\ContainerInterface;
 use Onurb\Bundle\YumlBundle\Yuml\YumlClient;
 use Onurb\Bundle\YumlBundle\Yuml\YumlClientInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
  * Utility to generate Yuml compatible strings from metadata graphs
@@ -18,14 +19,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
  */
 class YumlController extends AbstractController
 {
-    protected $container;
     /** @var YumlClient $yumlClient */
     protected $yumlClient;
 
-    public function __construct(ContainerInterface $container, YumlClientInterface $yumlClient)
+    public function __construct(YumlClientInterface $yumlClient)
     {
-        $this->container = $container;
         $this->yumlClient = $yumlClient;
+    }
+
+    public function getParameter(string $name)
+    {
+        return $this->container->getParameter($name);
     }
 
     /**

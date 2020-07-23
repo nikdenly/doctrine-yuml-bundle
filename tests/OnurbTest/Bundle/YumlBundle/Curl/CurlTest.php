@@ -1,4 +1,5 @@
 <?php
+
 namespace OnurbTest\Bundle\YumlBundle\Curl;
 
 use Onurb\Bundle\YumlBundle\Curl\Curl;
@@ -59,7 +60,7 @@ class CurlTest extends TestCase
         $curl->setPosts($posts);
         $response = $curl->getResponse();
 
-        $this->assertSame('15a98c92.png', $response);
+        $this->assertSame('15a98c92.svg', $response);
     }
 
     /**

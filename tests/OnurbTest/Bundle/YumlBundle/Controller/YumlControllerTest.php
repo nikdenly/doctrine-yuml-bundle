@@ -77,9 +77,9 @@ class YumlControllerTest extends TestCase
         /**
          * @var YumlController $controller
          */
-        $controller = new $this->controllerName;
+        $controller = new $this->controllerName($this->container->get('onurb_yuml.client'));
         $controller->setContainer($this->container);
 
-        return($controller);
+        return ($controller);
     }
 }
