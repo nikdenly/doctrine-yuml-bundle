@@ -15,6 +15,14 @@ use Symfony\Component\Console\Output\OutputInterface;
  **/
 class YumlCommand extends Command
 {
+    private $yumlClient;
+
+    public function __construct(YumlClient $yumlClient)
+    {
+        $this->yumlClient = $yumlClient;
+        parent::__construct();
+    }
+
     protected function configure()
     {
         $this->setName('yuml:mappings')
@@ -30,8 +38,8 @@ class YumlCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /** @var YumlClient $yumlClient */
-        $yumlClient = $this->getContainer()->get('onurb_yuml.client');
+        ///** @var YumlClient $yumlClient */
+        //$yumlClient = new YumlClient();
         $filename = $input->getOption('filename');
 
         $showDetailParam = $this->getContainer()->getParameter('onurb_yuml.show_fields_description');
@@ -42,14 +50,14 @@ class YumlCommand extends Command
         $direction = $this->getContainer()->getParameter('onurb_yuml.direction');
         $scale = $this->getContainer()->getParameter('onurb_yuml.scale');
 
-        $graphUrl = $yumlClient->getGraphUrl(
-            $yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
+        $graphUrl = $this->yumlClient->getGraphUrl(
+            $this->yumlClient->makeDslText($showDetailParam, $colorsParam, $notesParam),
             $styleParam,
             $extensionParam,
             $direction,
             $scale
         );
-        $yumlClient->downloadImage($graphUrl, $filename);
+        $this->yumlClient->downloadImage($graphUrl, $filename);
 
         $output->writeln(sprintf('Downloaded <info>%s</info> to <info>%s</info>', $graphUrl, $filename));
     }
