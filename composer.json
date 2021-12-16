@@ -25,7 +25,7 @@
     ],
     "require": {
         "php":                              ">=7.2.5",
-        "doctrine/annotations":             "^1.*",
+        "doctrine/annotations":             "^1.0",
         "doctrine/common":                  "^3.0",
         "doctrine/orm":                     ">=2.0",
         "onurb/doctrine-metadata-grapher":  "~1.0",
