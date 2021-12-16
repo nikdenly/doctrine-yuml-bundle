@@ -27,7 +27,7 @@ class YumlController extends AbstractController
         $this->yumlClient = $yumlClient;
     }
 
-    public function getParameter(string $name)
+    public function getParameter(string $name):  array|string|int|float|bool|null
     {
         return $this->container->getParameter($name);
     }
