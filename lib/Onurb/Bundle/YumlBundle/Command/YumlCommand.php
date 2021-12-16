@@ -2,7 +2,7 @@
 namespace Onurb\Bundle\YumlBundle\Command;
 
 use Onurb\Bundle\YumlBundle\Yuml\YumlClient;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,7 +13,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * @license MIT
  * @author Glynn Forrest <me@glynnforrest.com>
  **/
-class YumlCommand extends ContainerAwareCommand
+class YumlCommand extends Command
 {
     protected function configure()
     {
